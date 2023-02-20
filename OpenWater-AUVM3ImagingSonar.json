@@ -4,8 +4,8 @@
     "main_agent": "auv",
     "ticks_per_sec": 200,
     "frames_per_sec": true,
-    "octree_min": 0.02,
-    "octree_max": 5.0,
+    "octree_min": 0.01,
+    "octree_max": 150.0,
     "agents":[
         {
             "agent_name": "auv",
@@ -73,8 +73,8 @@
                     {
                         "RangeBins": 512,
                         "AzimuthBins": 512,
-                        "RangeMin": 0.2,
-                        "RangeMax": 1,
+                        "RangeMin": 0.4,
+                        "RangeMax": 150,
                         "InitOctreeRange": 50,
                         "Elevation": 30,
                         "Azimuth": 140,
