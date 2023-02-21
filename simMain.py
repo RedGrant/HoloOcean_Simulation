@@ -22,7 +22,7 @@ plt.grid(False)
 
 with tf.device('/GPU:0'):
     with holoocean.make(scenario_cfg= simulationConfiguration) as env:
-        env.spawn_prop("box", location=[0, 0, -2], rotation=None, scale=1, sim_physics=False, material="wood",
+        env.spawn_prop("box", location=[0, 0, -12], rotation=None, scale=1, sim_physics=False, material="wood",
                        tag="box_1")
         for _ in range(1000):
             env.act("auv0", command)
