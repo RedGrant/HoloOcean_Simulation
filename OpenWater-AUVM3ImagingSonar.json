@@ -1,14 +1,14 @@
 {
-    "name": "AUVM3",
+    "name": "KonbesgergImagingSonar",
     "world": "OpenWater",
-    "main_agent": "auv",
+    "package_name": "Ocean",
+    "main_agent": "auv0",
     "ticks_per_sec": 200,
-    "frames_per_sec": true,
     "octree_min": 0.01,
-    "octree_max": 150.0,
-    "agents":[
+    "octree_max": 5.0,
+    "agents": [
         {
-            "agent_name": "auv",
+            "agent_name": "auv0",
             "agent_type": "HoveringAUV",
             "sensors": [
                 {
@@ -23,8 +23,7 @@
                     "sensor_type": "IMUSensor",
                     "socket": "IMUSocket",
                     "Hz": 200,
-                    "configuration":
-                    {
+                    "configuration": {
                         "AccelSigma": 0.00277,
                         "AngVelSigma": 0.00123,
                         "AccelBiasSigma": 0.00141,
@@ -36,8 +35,7 @@
                     "sensor_type": "GPSSensor",
                     "socket": "IMUSocket",
                     "Hz": 5,
-                    "configuration":
-                    {
+                    "configuration": {
                         "Sigma": 0.5,
                         "Depth": 1,
                         "DepthSigma": 0.25
@@ -47,8 +45,7 @@
                     "sensor_type": "DVLSensor",
                     "socket": "DVLSocket",
                     "Hz": 20,
-                    "configuration":
-                    {
+                    "configuration": {
                         "Elevation": 22.5,
                         "VelSigma": 0.02626,
                         "ReturnRange": true,
@@ -60,8 +57,7 @@
                     "sensor_type": "DepthSensor",
                     "socket": "DepthSocket",
                     "Hz": 100,
-                    "configuration":
-                    {
+                    "configuration": {
                         "Sigma": 0.255
                     }
                 },
@@ -69,15 +65,14 @@
                     "sensor_type": "ImagingSonar",
                     "socket": "SonarSocket",
                     "Hz": 10,
-                    "configuration":
-                    {
+                    "configuration": {
                         "RangeBins": 512,
                         "AzimuthBins": 512,
                         "RangeMin": 0.4,
                         "RangeMax": 150,
                         "InitOctreeRange": 50,
-                        "Elevation": 30,
-                        "Azimuth": 140,
+                        "Elevation": 20,
+                        "Azimuth": 120,
                         "AzimuthStreaks": -1,
                         "ScaleNoise": true,
                         "AddSigma": 0.15,
@@ -88,11 +83,11 @@
                 }
             ],
             "control_scheme": 0,
-            "location": [35.0, -40.5, -292.5],
-            "rotation": [0.0, 0.0, 130.0]
+            "location": [0, 0, -10],
+            "rotation": [0.0, 0.0, 0]
         }
     ],
-
-    "window_width":  1920,
+    "window_width":  1980,
     "window_height": 1080
 }
+
