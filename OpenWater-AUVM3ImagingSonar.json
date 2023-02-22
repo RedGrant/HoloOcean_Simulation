@@ -78,7 +78,10 @@
                         "AddSigma": 0.15,
                         "MultSigma": 0.2,
                         "RangeSigma": 0.1,
-                        "MultiPath": true
+                        "MultiPath": true,
+                        "ViewRegion": true,
+                        "WaterDensity": 997,
+                        "ShowWarning": true
                     }
                 }
             ],
@@ -90,4 +93,3 @@
     "window_width":  1980,
     "window_height": 1080
 }
-

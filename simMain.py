@@ -23,7 +23,7 @@ plt.ion()
 figure, axis = plt.subplots(subplot_kw=dict(polar=True))
 
 # set the 0 to -pi/2 so for a better representation of the WCI
-axis.set_theta_zero_location("S")
+axis.set_theta_zero_location("N")
 
 ## limit the polar representation of data according to the echosounder Azimuth
 
@@ -39,16 +39,16 @@ axis.set_thetamax(azimuth / 2)
 theta = np.linspace(-azimuth / 2, azimuth / 2, binsAzimuth) * np.pi / 180
 
 # evenly space numbers over a specified interval. The azimuth bins state how the values are spaced.
-range = np.linspace(minRange, maxRange, binsRange)
+sonarRange = np.linspace(minRange, maxRange, binsRange)
 
-thetaMesh, rangeMesh = np.meshgrid(theta, range)
+thetaMesh, rangeMesh = np.meshgrid(theta, sonarRange)
 
 backscatterZeroes = np.zeros_like(thetaMesh)
 
 plt.grid(False)
 
 # paint the SONAR representation
-plot = axis.pcolormesh(thetaMesh, rangeMesh, backscatterZeroes, cmap='Oranges', shading='auto', vmin=0, vmax=1)
+plot = axis.pcolormesh(thetaMesh, rangeMesh, backscatterZeroes, cmap='gray', shading='auto', vmin=0, vmax=1)
 plt.tight_layout()
 figure.canvas.draw()
 figure.canvas.flush_events()
@@ -57,32 +57,17 @@ command = np.array([0, 0, 0, 0, -20, -20, -20, -20])
 
 with tf.device('/GPU:0'):
     with holoocean.make(scenario_cfg=simulationConfiguration) as env:
-        env.spawn_prop("box", location=[0, 0, -12], rotation=None, scale=1, sim_physics=False, material="wood",
+        env.spawn_prop("box", location=[2, 0, -12], rotation=None, scale=1, sim_physics=False, material="wood",
                        tag="box_1")
-        for _ in range(1000):
+        for index in range(1000):
             env.act("auv0", command)
             state = env.tick()
             if 'ImagingSonar' in state:
                 s = state['ImagingSonar']
+                plot.set_array(s.ravel())
+                figure.canvas.draw()
+                figure.canvas.flush_events()
 
-#
-##### RUN SIMULATION
-# command = np.array([0, 0, 0, 0, -20, -20, -20, -20])
-#
-# with tf.device('/GPU:0'):
-#    with holoocean.make(scenario) as env:
-#        for i in range(1000):
-#            env.act("auv0", command)
-#            state = env.tick()
-#
-#            if 'ImagingSonar' in state:
-#                s = state['ImagingSonar']
-#                plot.set_array(s.ravel())
-#
-#                figure.canvas.draw()
-#                figure.canvas.flush_events()
-#
-#    print("Finished Simulation!")
-#    plt.ioff()
-#    plt.show()
-#
+print("Finished Simulation!")
+plt.ioff()
+plt.show()
