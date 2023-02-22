@@ -63,6 +63,8 @@
                 },
                 {
                     "sensor_type": "ImagingSonar",
+                    "location": [0,0.25,0],
+                    "rotation": [0, 45, 0],
                     "socket": "SonarSocket",
                     "Hz": 10,
                     "configuration": {
@@ -70,9 +72,9 @@
                         "AzimuthBins": 512,
                         "RangeMin": 0.4,
                         "RangeMax": 150,
-                        "InitOctreeRange": 50,
+                        "InitOctreeRange": 1,
                         "Elevation": 20,
-                        "Azimuth": 120,
+                        "Azimuth": 60,
                         "AzimuthStreaks": -1,
                         "ScaleNoise": true,
                         "AddSigma": 0.15,
@@ -81,7 +83,8 @@
                         "MultiPath": true,
                         "ViewRegion": true,
                         "WaterDensity": 997,
-                        "ShowWarning": true
+                        "ShowWarning": true,
+                        "ViewOctree": -1
                     }
                 }
             ],

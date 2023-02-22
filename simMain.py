@@ -2,6 +2,7 @@ import holoocean
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import numpy as np
+import controlAUV as control
 
 scenario = "OpenWater-KonbesgergImagingSonar"
 simulationConfiguration = holoocean.packagemanager.get_scenario(scenario)
@@ -53,13 +54,14 @@ plt.tight_layout()
 figure.canvas.draw()
 figure.canvas.flush_events()
 
-command = np.array([0, 0, 0, 0, -20, -20, -20, -20])
-
 with tf.device('/GPU:0'):
     with holoocean.make(scenario_cfg=simulationConfiguration) as env:
-        env.spawn_prop("box", location=[2, 0, -12], rotation=None, scale=1, sim_physics=False, material="wood",
+        env.spawn_prop("box", location=[2, 0, -15], rotation=None, scale=1, sim_physics=False, material="brick",
                        tag="box_1")
-        for index in range(1000):
+        while True:
+            if 'q' in control.pressed_keys:
+                break
+            command = control.parse_keys(control.pressed_keys, control.force)
             env.act("auv0", command)
             state = env.tick()
             if 'ImagingSonar' in state:
