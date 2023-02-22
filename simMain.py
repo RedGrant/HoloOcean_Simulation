@@ -5,6 +5,8 @@ import numpy as np
 import controlAUV as control
 
 scenario = "OpenWater-KongsbergImagingSonar"
+#scenario = "PierHarbor-KongsbergImagingSonar"
+
 simulationConfiguration = holoocean.packagemanager.get_scenario(scenario)
 
 #### ECHOSOUNDER CONFIG
@@ -54,21 +56,22 @@ plt.tight_layout()
 figure.canvas.draw()
 figure.canvas.flush_events()
 
-with tf.device('/GPU:0'):
-    with holoocean.make(scenario_cfg=simulationConfiguration) as env:
-        env.spawn_prop("box", location=[2, 0, -15], rotation=None, scale=1, sim_physics=False, material="brick",
-                       tag="box_1")
-        while True:
-            if 'q' in control.pressed_keys:
-                break
-            command = control.parse_keys(control.pressed_keys, control.force)
-            env.act("auv0", command)
-            state = env.tick()
-            if 'ImagingSonar' in state:
-                s = state['ImagingSonar']
-                plot.set_array(s.ravel())
-                figure.canvas.draw()
-                figure.canvas.flush_events()
+#with tf.device('/GPU:0'):
+with holoocean.make(scenario_cfg=simulationConfiguration) as env:
+    env.spawn_prop("box", location=[2, 0, -15], rotation=None, scale=5, sim_physics=False, material="brick",
+                   tag="box_1")
+
+    while True:
+        if 'q' in control.pressed_keys:
+            break
+        command = control.parse_keys(control.pressed_keys, control.force)
+        env.act("auv0", command)
+        state = env.tick()
+        if 'ImagingSonar' in state:
+            s = state['ImagingSonar']
+            plot.set_array(s.ravel())
+            figure.canvas.draw()
+            figure.canvas.flush_events()
 
 print("Finished Simulation!")
 plt.ioff()

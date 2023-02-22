@@ -1,11 +1,12 @@
 {
     "name": "KongsbergImagingSonar",
-    "world": "OpenWater",
+    "world": "PierHarbor",
     "package_name": "Ocean",
     "main_agent": "auv0",
     "ticks_per_sec": 200,
+    "frames_per_sec": true,
     "octree_min": 0.01,
-    "octree_max": 50.0,
+    "octree_max": 5.0,
     "agents": [
         {
             "agent_name": "auv0",
@@ -88,8 +89,8 @@
                 }
             ],
             "control_scheme": 0,
-            "location": [0, 0, -10],
-            "rotation": [0.0, 0.0, 0]
+            "location": [486.0, -632.0, -12.0],
+            "rotation": [0.0, 0.0, 180]
         }
     ],
     "window_width":  1280,
