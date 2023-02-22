@@ -1,5 +1,5 @@
 {
-    "name": "KonbesgergImagingSonar",
+    "name": "KongsbergImagingSonar",
     "world": "OpenWater",
     "package_name": "Ocean",
     "main_agent": "auv0",
@@ -72,7 +72,7 @@
                         "AzimuthBins": 512,
                         "RangeMin": 0.4,
                         "RangeMax": 150,
-                        "InitOctreeRange": 1,
+                        "InitOctreeRange": 50,
                         "Elevation": 20,
                         "Azimuth": 60,
                         "AzimuthStreaks": -1,
@@ -89,7 +89,7 @@
                 }
             ],
             "control_scheme": 0,
-            "location": [0, 0, -10],
+            "location": [175, -100, -270],
             "rotation": [0.0, 0.0, 0]
         }
     ],

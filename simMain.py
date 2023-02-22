@@ -4,7 +4,7 @@ import tensorflow as tf
 import numpy as np
 import controlAUV as control
 
-scenario = "OpenWater-KonbesgergImagingSonar"
+scenario = "OpenWater-KongsbergImagingSonar"
 simulationConfiguration = holoocean.packagemanager.get_scenario(scenario)
 
 #### ECHOSOUNDER CONFIG
